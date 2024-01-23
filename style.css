@@ -14,7 +14,17 @@ p {font-size: 16px;}
 .margin {margin-bottom: 30px;}
 
 a {
-  color: #e87da1;
+  color: #f65b8e;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #b0486b;
+  font-weight: 600;
+  font-style: oblique;
+}
+a:visited{
+  color: #4b333b;
 }
 
 .container-fluid {
@@ -37,19 +47,18 @@ nav {
 .nav-title{
   margin-left: 15px;
   margin-right: 15px;
-  color: #6e0629;
+  color: #ae1d72;
 }
 
 .nav-link {
   padding: 10px 30px;
-  background-color: white;
-  color:  #9b337c;
+  color:  #ed7dcb;
 }
 
 .nav-link:hover {
   padding: 10px 30px;
-  background-color: white;
-  color:  #700f53;
+  font-weight: 600;
+  color:  #9b337c;
 }
 
 #btn {
@@ -60,7 +69,7 @@ nav {
 
 #btn:hover {
   padding: 10px 30px;
-  background-color: #59be49;
+  background-color: #a0cf98;
 }
 
 .row {
