@@ -6,13 +6,16 @@ body {
     padding-top: 0px !important;
   }
 
-h3 {
-  font-weight: 600;
+h2 {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .textcontainer {
-  padding: 2% 10%;;
+  padding: 2% 15%;
 }
-
+.text-center {
+  padding: 2% 15%;
+}
 p {font-size: 16px;}
 .margin {margin-bottom: 30px;}
 
@@ -27,7 +30,7 @@ a:hover{
   font-style: oblique;
 }
 a:visited{
-  color: #4b333b;
+  color: #1a5e55;
   text-decoration: line;
 }
 
@@ -51,7 +54,7 @@ nav {
 .nav-title{
   margin-left: 15px;
   margin-right: 15px;
-  color: #ae1d72;
+  color: #45a175;
 }
 
 .nav-link {
@@ -62,7 +65,7 @@ nav {
 .nav-link:hover {
   padding: 10px 30px;
   font-weight: 600;
-  color:  #9b337c;
+  color:  #dd65bb;
 }
 
 #btn {
@@ -106,4 +109,19 @@ code {
 
 #aboutme {
   padding: 20px;
+}
+
+
+/* making the hover animations */
+.switch{
+    display:inline;
+}
+.switch:hover .second {
+    display: inline;
+}
+.switch:hover .first {
+    display: none;
+}
+.switch .second {
+    display: none;
 }
