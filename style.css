@@ -1,14 +1,19 @@
 body {
-    font: 18px Baskerville;
+    font: 20px Baskerville;
     line-height: 1.8;
     color: black;
     background-color: white;
     padding-top: 0px !important;
   }
 
-h2 {
-  padding-top: 15px;
-  padding-bottom: 15px;
+img {
+    padding: 2%;
+  }
+
+h3 {
+  color: #d04d8c;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .textcontainer {
   padding: 2% 15%;
@@ -16,7 +21,7 @@ h2 {
 .text-center {
   padding: 2% 15%;
 }
-p {font-size: 16px;}
+p {font-size: 18px;}
 .margin {margin-bottom: 30px;}
 
 a:link{
@@ -59,11 +64,9 @@ nav {
 
 .nav-link {
   padding: 10px 30px;
-  color:  #ed7dcb;
 }
 
 .nav-link:hover {
-  padding: 10px 30px;
   font-weight: 600;
   color:  #dd65bb;
 }
