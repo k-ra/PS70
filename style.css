@@ -58,9 +58,13 @@ a:hover{
   font-style: oblique;
 }
 
+a:visited{
+  color: #000000;
+}
+
 nav {
   background-color: white;
-  color: black;
+  color: rgb(0, 0, 0);
 }
 
 .navbar-nav {
