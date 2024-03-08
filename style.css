@@ -28,6 +28,10 @@ b {
   color: rgb(227, 72, 147);
 }
 
+h2 {
+  text-transform: lowercase;
+  text-align: center;
+}
 h3 {
   font-family: "Ojuju", sans-serif;
   text-transform: uppercase;
@@ -57,14 +61,12 @@ a:hover{
 nav {
   background-color: white;
   color: black;
-  padding: 50px 0px;
 }
 
 .navbar-nav {
   padding: 2%;
   display: flex;
   justify-content: flex-start;
-  /* gap: 30px; */
 }
 
 .nav-title{
@@ -80,7 +82,7 @@ nav {
 
 .nav-link:hover {
   font-weight: 600;
-  color:#dd668e
+  color:#6f64ff
 }
 
 .row {
