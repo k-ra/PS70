@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>kyra mo ps70: week 6</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div>
+        <img src="../icons/icon.png" class="navbar-brand" alt="Logo" style="align-items:center; height: 13vh;">
+        <h2 class="nav-title">kyra mo</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4>
+          <a href="../05_3Ddesign/week5.html" class="prev nav-link">&larr;</a> <!-- Left arrow -->
+          <a class="nav-link" href="../index.html">home</a>
+          <a class="nav-link" href="../about/about.html">about</a>
+          <a href="../templatepage.html" class="next nav-link">&rarr;</a> <!-- Right arrow -->
+        </h4>
+      </div>
+    </div>
+  </nav>
+
+  <div class="textcontainer">
+    <h2>Week 9: Radio, WiFi, Bluetooth (IoT) </h2>
+    <h4>Microcontroller Communication</h4>
+
+    This week I worked with <a href="https://chris-rivers.github.io/PS70/09_networking/index.html">Chris</a> and <a
+      href="https://kirafagerstrom.github.io/ps70/about.html">Kira</a> on a Firebase-ESP32 communication device to play
+    <a href="https://k-ra.github.io/twomolewhackamole/">Two Mole Whack-a-mole</a>! Below is our
+    shared documentation copied to each of our websites.<br>
+    <br>
+    <h3 style="color:#e2165b;"> <a href="https://k-ra.github.io/twomolewhackamole/">Two-Mole-Whackamole &#169;</a></h3>
+    For our networking project this week, we decided to make a project using Firebase. The basic idea was to make a
+    rudimentary version of the game Whac-A-Mole, using a circuit with an LED on it. The LED (meant to be the mole) would
+    go on at a random time within a set interval, and then pressing a button on the circuit to turn off the light would
+    get you points based on how long it took you to "whack" the "mole". Each player's points would be calculated in
+    Arduino and then sent to a Firebase database, before finally being displayed on an html website. <br>
+    <br>
+    <h3>Setting up Firebase</h3>
+    The first thing we tackled was setting up a remote database for the project using Firebase. We followed this
+    <a href="https://randomnerdtutorials.com/esp32-firebase-realtime-database/">tutorial </a>on RandomNerd to help
+    us with that. It was pretty simple beyond the generic setup because all we needed to
+    store was a score nested in a node for each player. The Arduino IDE code (included in full code below) from the
+    RandomNerd tutorial sent a float and random integer from the ESP to the database every 15 seconds, and we tested our
+    connections/circuit by manually changing database values to see if they were reflected in the Arduino IDE serial
+    monitor. It worked!<br>
+    <br>
+    <h3>Making a website interface</h3>
+    We used <a href=â€https://nathanmelenbrink.github.io/ps70/09_networking/index.htmlâ€>Nathan's html code</a> to
+    create an web interface that would display the Whackamole score for each player. We modified the basic setup code
+    slightly to add references to the Player 1 and Player 2 scores in the Firebase RTDB, and event listeners to
+    automatically update scores as the game continues (using the document.getElementById function). Kyra added a super
+    cute pair of moles and formatting.
+    <br><br>
+    <a href="https://github.com/k-ra/twomolewhackamole/blob/main/index.html">Github Repo for Website Code</a>
+    <pre> 
+      <code class="html">
+<body>
+    <h1 class="title">TWO MOLE WHACK-A-MOLE</h1>
+    <h1 class="hedge">tzo mole bhack a mole</h1>
+    <div class="container text-center">
+        <img src="moles.png" />
+        <div class="row align-items-start">
+            <div class="col">
+                <h1> PLAYER 1 </h1>
+                <h1 class="score" id="Player1" name="Player1"> </h1>
+            </div>
+            <div class="col">
+                <h1> PLAYER 2 </h1>
+                <h1 class="score" id="Player2" name="Player2"> </h1>
+            </div>
+        </div>
+    </div>
+    <h1 class="hedge">tzo mole bhack a mole</h1>
+    <h1 class="marquee"><i>PLAY MINDFULLY! WHACK WITH CARE!</i></h1>
+</body>
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDqKrIBQJPREROt6Rud552YL1Ig1bmLvbg",
+    authDomain: "week-9-assignment.firebaseapp.com",
+    databaseURL: "https://week-9-assignment-default-rtdb.firebaseio.com",
+    projectId: "week-9-assignment",
+    storageBucket: "week-9-assignment.appspot.com",
+    messagingSenderId: "606426012864",
+    appId: "1:606426012864:web:8d7c375088cea0702f2125",
+    measurementId: "G-RW3TZ3MPPC"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get a database reference to our blog
+  var ref = firebase.database().ref("/");
+  var player1 = firebase.database().ref().child('/Player 1/SCORE');
+  var player2 = firebase.database().ref().child('/Player 2/SCORE');
+
+  player1.on('value', snap => {
+    document.getElementById('Player1').innerHTML = snap.val();
+  });
+  player2.on('value', snap => {
+    document.getElementById('Player2').innerHTML = snap.val();
+  });
+
+</script>
+    </code>
+    </pre>
+    <h3>Programming the ESP32</h3>
+    We ended up with a fairly simple circuit containing 2 buttons, 2 LEDs with one 1kOhm resistor each, and an ESP32
+    Wroom on a LOLIN32 board.
+
+    <br>
+    Here are the pin and LED connections to the ESP32 board (pins must have digital write and digital read capacity/both
+    input and output).
+    <br>
+    <ul>
+      <li> Player 1: Button 1 (pin 33) and LED 1(pin 32) </li>
+      <li> Player 2: Button 2 (pin 26) and LED2 (pin 25) </li>
+    </ul>
+    We modified the code from the earlier RandomNerd tutorial so the Firebase configuration is the same, but we added
+    variables for the buttons, LEDs, scores, players, and LEDonTime in the setup, and programmed the game according to
+    the following logic: turn the LEDs on at a random time, record the amount of time between the LED turning on and the
+    button press, and convert that into a score.
+    INSERT ARDUINO CODE HERE
+
+    <h3>Demo</h3>
+    Here is a video of the Firebase RTDB updating the score according to how fast the button is pressed:
+    INSERT DEMO VIDEO
+
+    <h3>Future Iterations</h3>
+    Work was started to make the LED more mole-like: the plan was to use a solenoid attached to a mole figure so it
+    could pop up and down, but this hasn't been finished yet.
+
+
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
