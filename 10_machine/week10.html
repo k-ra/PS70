@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>kyra mo ps70: week 10</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div>
+        <img src="../icons/icon.png" class="navbar-brand" alt="Logo" style="align-items:center; height: 13vh;">
+        <h2 class="nav-title">kyra mo</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4>
+          <a href="../05_3Ddesign/week5.html" class="prev nav-link">&larr;</a> <!-- Left arrow -->
+          <a class="nav-link" href="../index.html">home</a>
+          <a class="nav-link" href="../about/about.html">about</a>
+          <a href="../templatepage.html" class="next nav-link">&rarr;</a> <!-- Right arrow -->
+        </h4>
+      </div>
+    </div>
+  </nav>
+
+  <div class="textcontainer">
+    <h2>Project 10: Making a Machine</h2>
+    <h4>Mandala Drawing Machine</h4>
+
+    For the past two weeks, I've worked with Sophia, Alex, and Tarun to create this Mandala drawing machine:
+    <div class="center">
+      <img src="machine.gif" width="30%">
+      <img src="machinebirdseye.jpeg" width="40%">
+    </div>
+    <h3> Idea and Inspiration </h3>
+    We wanted to put a twist (literally!) to our drawing machine. So, we made it rotate! Our idea is to have a fixed drawing machine
+    move and draw a user-defined line atop a slowly rotating platform, making a complete mandala. This was inspired by this project:
+    <a href="https://inventorartist.com/cycloid-o-matic/">Inventor Artist Cardboard Mandala</a>, except we added real time user input to it, and defined machine movement with
+    2 axes, which increases the flexibility and freedom of our drawings!!
+    <br>
+
+    <h3>Project Elements</h3>
+    We had a  four person team and many moving parts (literally!), so let's break down the project into components. On the coding
+    side, we needed to have a line input interface, a way to transmit that to the drawing machine, and a way to convert
+    the coordinates of the line into stepper motor code. On the physical side, we needed a machine with full axis flexibility
+    (3D printed and assembled), and also a rotating platform. On the cloud database side, we had to have a space to receive
+    and hold all the user inputs. I was in charge of the cloud database, the input interface, and the transmittance of data.
+    Sophia and Alex were in charge of the physical machine, its assembly and design. Tarun was in charge of the arduino code
+    of the stepper motors!
+    <br>
+    <br>
+
+    <h3> <a href="https://k-ra.github.io/twomolewhackamole/"> Input Interface Design &#169;</a></h3>
+
+    I implemented the website in Svelte, in anticipation of a real-time data transfer to Firebase. For simplicity and for better 
+    clarity of mandala movement, we decided to send the user input line at the end of the drawing instead of throughout. This is 
+    evidenced by our "save" button, which would then flash a "SENT to the machine!" notification. I coded the canvas so that the 
+    user is limited to one single stroke, with the option to redo it if unsatisfied. During the drawing, it remembers the coordinates
+    of each point of the line and saves it to a dictionary with x: _ y:_, ... as its structure. When sending, it uploads it all to 
+    "COORDS" on the firebase database. This is then read by the ESP32's Arduino code and converted into stepper motor code. 
+    <br>
+    <br>
+    <div class="center">
+      <img src="website.png" width="60%"> <br>
+      <a href="https://github.com/k-ra/mandala">Github Repo for Website Code</a> <br>
+      <a href="https://mandala-self.vercel.app">LIVE Portal with Input Website!</a> <br>
+    </div>
+    <h3>3D Printing and Assembly</h3>
+
+    <div class="center">
+      <img src="assembly3.jpeg" width="30%"> 
+      <img src="assembly5.jpeg" width="30%"><br>
+    </div>
+
+    We decided to follow a tutorial to assemble a simple x-and-y-axis 2D drawing machine. This was an incredible effort over two weeks, 
+    as our first few attempts at 3D printing and assembly were thwarted by varying dimensions across files, missing parts, and other little mishaps.
+    Sophia and Alex painstakingly worked with multiple different versions of part files, with different scales for each one. After 
+    approximately 3-4 full attempts at the 3D printer, we were able to fully synchronize every single part to another, and begin assembling.  
+
+    <div class="center">
+      <img src="assembly1.jpeg" width="30%">
+      <img src="assembly2.jpeg" width="30%"> 
+      <img src="assembly4.jpeg" width="30%"><br>
+    </div>
+
+    We attached a lazy susie style wooden platform to the center of our intended canvas. We also secured the entire axes onto a wooden platform. 
+
+    <br><br>
+
+
+    <h3>Programming the ESP32</h3>
+    This is where we began doing the hard work of converting coordinates to stepper motor directions. What pixel correlates to which inch, 
+    and how does that correspond to one step? We took pen to paper to convert the math out: <br>
+    <img src="math.jpeg" width="40%"> <br>
+    Tarun was able to convert that into ESP32 code, which accessed the Firebase database and converted into stepper motor code:
+    <iframe src=https://create.arduino.cc/editor/k-ra/e9300917-beba-45b8-a3a2-8e54f2da5178/preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
+    <h3>Future Work</h3>
+    We have one hour of work left, where we can fully test the machine with the stepper motor code and everything integrated! 
+    Waiting the rest of Thursday lab...
+
+
+
+
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
