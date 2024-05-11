@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>kyra mo ps70: week 6</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div >
+        <img src="../icons/icon.png" class="navbar-brand" alt="Logo" style="align-items:center; height: 13vh;">
+        <h2 class="nav-title">kyra mo</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4>
+          <a href="../05_3Ddesign/week5.html" class="prev nav-link">&larr;</a> <!-- Left arrow -->
+          <a class="nav-link" href="../index.html">home</a>
+          <a class="nav-link" href="../about/about.html">about</a>
+          <a href="../templatepage.html" class="next nav-link">&rarr;</a> <!-- Right arrow -->
+        </h4>
+      </div>
+    </div>
+  </nav>
+
+  <div class="textcontainer">
+    <h2>final project progress</h2>
+    <img src="beretbot.jpg" width="100%">
+    <p>This is the OUTDATED drawing of a mult-wheel robot with an omniwheel acting as the "paintbrush". I've rethought
+      this for a sleeker body and some more challenge for me (oops!)!!
+    </p>
+    <p>Inducing hamster ball motion: how do I find the spirit within a big empty ball to move it forward without 
+      addding any excess wheels and protruding elements from the body? There is one big answer: shifting the center
+      of gravity by controlling the position of various weights withn the sphere.
+    </p>
+    <p> My project sits in between two existing center of gravity designs, one by Casey Duckering and the other 
+      by Mark Rober. They are presented below. Casey's has all three axes in a normal sized hamster ball, and Mark's 
+      has only one in a bowling-ball case. The weight both simulates the heft of a normal bowling-ball and also is enough
+      to disrupt the velocity of a typical throw. 
+    </p>
+
+    <img src="casey.png" width = "40%"> <img src="mark.png" width="40%">
+    <p> I will be working on two axes, as it is a free-draw, free-print robot and therefore constrained to two axes. 
+      Inspired by Mark's swinging arc, I will add another in the 90 degree direction. 
+    </p>
+
+    <img src="sleeve.png" width = "70%"> 
+    <p> the sponge ink-filled sleeve that goes over the hamster ball
+    </p>
+
+    <img src="top.png" width="40%"> <img src="layer.png" width="40%">
+
+
+    <h2>sensor </h2>
+
+    <p> When discussing with Nathan, we realized that the easiest way to sense direction in a small body
+      (thinking of a hamster sphere!) is to have a single microphone sense if one area is louder than the other. Hence,
+      the control flow would look a little like this: the mic would sample every 2 seconds while the robot is running in
+      one direction. If the final area is louder than the other, the direction was correct; if not, it would circle
+      back. Since the robot's greatest intended output is its ink footprint, I'll refine this process so the route looks
+      nice on paper :). For our purposes here, we can abstract this mission like so:</p>
+
+
+    <p>Configure and code a microphone so it samples sound every 3 seconds. If the latter sampling is
+      LOUDER than the earlier, than the LED will be ON. If not, it will turn OFF. This is an example of the decision
+      making that the robot will make.</p>
+
+    <h2>verdict </h2>
+    However, when I was working on the actual MVP, I realized that this swinging arc would only bring a moving ball a few inches to the right. If it is in a fixed position within the body, after rolling to the left, the swing would no longer be "left" anymore. This means that I needed two bodies; one inside, which was constant in orientation tot he ground, and one outside. The interaction between them would be frictionless. This left me stumped for a little bit, which is possibly why (flash forward) I decided to go with another project. 
+    </p>
+
+  </div>
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</html>
