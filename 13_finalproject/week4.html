@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>kyra mo ps70: week 4</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <!-- navigation -->
+  <nav class="navbar">
+    <div style="align-items: center; justify-content: center;" class="container-fluid">
+      <div >
+        <img src="../icons/icon.png" class="navbar-brand" alt="Logo" style="align-items:center; height: 13vh;">
+        <h2 class="nav-title">kyra mo</h2>
+      </div>
+      <div class="navbar-nav">
+        <h4>
+          <a href="../10_machine/week10.html" class="prev nav-link">&larr;</a> <!-- Left arrow -->
+          <a class="nav-link" href="../index.html">home</a>
+          <a class="nav-link" href="../about/about.html">about</a>
+        </h4>
+      </div>
+    </div>
+  </nav>
+
+  <div class="textcontainer">
+    <h2>HEARTWING</h2>
+    <img src=heartwinng.JPG class="imgcenter" width="90%"> 
+   
+
+    <h3> introduction </h3>
+
+<p>I realized upon reflection that my time at PS70 has been decorated with visual art - interesting, doodle-driven and silly or wild ideas where I wouldn't suppress my urge to aestheticize. This is how I arrived at my final project idea: butterfly wings for music. 
+</p>
+<p>
+  How do living things react to music? It is a current within us - sound - literally! I wanted to make an art piece that reflected that ethereal, spiky, strong force that sound evokes in us. At the same time, I wanted to experiment with fashion and art-robots, and the imagination of a mechanical heart. </p>
+
+<h3>DESIGN</h3>
+This is the full sketchpad of all the ideas that kickstarted this project!
+As you can see, there were some ideas on the top right for the cosmetics of the music keyboard. However, I decided to focus more on the engineering of the heartwings for this semester's project!
+<img src="sketch.JPG" class="imgcenter" width="80%">
+From the getgo, I wanted skeletal but elegant wings. The top would move, while the bottom would be fixed. In the future, I would be interested to look into an accordian motion (all the wings collapsing in distance at a constant rate), but for now, they were fixed on an acrylic back plate! 
+<br>
+After these considerations, I jumped into fusion and sketched it out, this time in vectors and volumes:
+<div class="imgcenter"><img src="fusionwing.png" width="40%">
+  <img src="fusionwings.png" width="40%">
+</div>
+<h3> FABRICATION</h3>
+I went ahead to laser cut the wings:<br>
+<img src="cut1.JPG" width="40%">
+  <img src="cut2.JPG" width="40%"> <br>
+According to the proportions, I made a back plate, and measured it for Fusion:
+<br>
+<img src="back1.JPG" width="30%">
+  <img src="back2.JPG" width="30%"> 
+  <img src="back3.JPG" width="30%"><br>
+  All set! I proceeded to an incredibly painstaking process where I screwed both pieces together with M3 screws. I tapped the acrylic and drilled the wood with a slightly smaller drill bit than the M3 to ensure a tight, non-slip and secure union. This took me possible 3 or so hours, just because drill bits would retire, tapping bits broke, and I wanted to be meticulous about the appearance of the joint!
+  <br>
+<img src="IMG_7226.JPG" width="40%">
+  <img src="IMG_7229.JPG" width="40%"> <br>
+  Now, a sneak peak of what's to come - the servo! I attached the servo on the wing (after some more painful drilling - 1 hour of delicate screwing!) and tested it with a single sweep code. 
+  <br><img src="imagne.png" class="imgcenter" width="40%">
+  <br>
+  <h3> SERVO CODE</h3>
+  However, the two should sweep together, not separately! For this, I created two Servos, one left and one right, all corresponding to one changing variable of "servopos". While the left servo would respond to "servopos", the right servo would respond to "90-servopos". The wings were capable of sweeping only 90 degrees before colliding/before visual unpleasantness!
+  Here is a video of them doing their first sweep:
+  <video width="30%" height="auto" class="imgcenter" autoplay muted>
+    <source src="IMG_7238.MOV" type="video/mp4">
+  </video>
+  I added a music keyboard component to control the heights of the wings. I explain the code further in "Music Code" below, but here is the entire code file for the project:
+  Here is the full code file, including the 
+  <iframe src=https://app.arduino.cc/sketches/k-ra/cfa58c76-6d72-457f-b74b-284a826e07e1?view-mode=preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
+
+  <h3> WING CIRCUITRY</h3>
+<p> I had a mini breadboard with an adhesive stuck to the back plate of the heart. This way it was conveniently placed between both servos, and also allowed for wire storage. I put the ground pins for each servo together, the power pins together, and the digital read pins separate. Then, I routed them back to the main breadboard.</p>
+<h3> MUSIC CODE</h3>
+<p>Now music. This was an unforseen challenge. In order to implement the keyboard portion of this project, I needed a MIDI cord and a MIDI interface. I had been fully set up to use VCV Rack to interpret the breadboard keyboard I would make:</p>
+<img src="vcvrack.png" class="imgcenter" width="50%">
+<p>However, since the lab had no MIDI cables, I turned to other options. First, I looked for a way to use MIDI without the cable. I had to download a Macbook Firmware Recognition software and short my circuit board to recognize itself as new firmware. I accessed the "DFU Programmer" Github Repo
+  on my Macbook, downloaded it with homebrew, and attempted to run it. However, I quickly realized that it could only switch between being a MIDI firmware and an Arduino one. However, I needed it to be both; I was running the servos, the code for music recognition, and the keyboard on the same connection cable. Hence, this solution didn't work.
+</p>
+<p>Problem solving led me to the Serial Monitor. Serial monitors open up ports that can be read from across the computer. There is a clear way to make every single button correspond to one Serial print, and for anothe program on my computer to run concurrently, recognizing each Serial print. I downloaded Processing for an easy IDE to implement this, 
+  and I sourced the code below. This uses an audio player built into the Processing Minim libraries (which I imported). When it hears "1" from the Serial port 9600, it will play the first note. Each note I recorded in Garageband and saved in a separate mp3 file. I was then able to import it into the directory where the Processing code ran. 
+</p>
+<iframe src=https://app.arduino.cc/sketches/k-ra/0299ea4d-862e-4cdb-a003-e4784d654c18?view-mode=preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
+<h3> MUSIC CIRCUITRY</h3>
+<img src="keyboard.png" class="imgcenter" width="50%">
+<p>This is a good old fashioned keyboard, made for the music demo! I attached them all to analog pins, as they did not need to be digital. This was also the intermediary breadboard for the Heartwings; a lot of wires coming from out of frame are the Power, Ground, and 2 Digital Pin wires from the wings!</p>
+<h3> FABRICATION (AGAIN!)</h3>
+With all the circuiting done, it was time to attach the wings and find a place for all the wires to reside. I made a heart-shaped box with holes for the servos to attach and poke out. It's actually included in the sketch above! Here it is all assembled:
+<img src="box.JPG" class="imgcenter" width="50%">
+<h3>DEMO!</h3>
+<video width="90%" height="auto" class="imgcenter" controls autoplay>
+  <source src="IMG_7249.MOV" type="video/mp4">
+</video>
+  
+<br>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+  </div>
+</body>
+</html>
