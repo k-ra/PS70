@@ -33,13 +33,13 @@
 
     <h3> introduction </h3>
 
-<p>I realized upon reflection that my time at PS70 has been decorated with visual art - interesting, doodle-driven and silly or wild ideas where I wouldn't suppress my urge to aestheticize. This is how I arrived at my final project idea: butterfly wings for music. 
+<p>I realized upon reflection that my time at PS70 has been decorated with visual art - interesting, doodle-driven and colorful ideas where I wouldn't suppress my urge to aestheticize. This is how I arrived at my final project idea: butterfly wings for music. 
 </p>
 <p>
-  How do living things react to music? It is a current within us - sound - literally! I wanted to make an art piece that reflected that ethereal, spiky, strong force that sound evokes in us. At the same time, I wanted to experiment with fashion and art-robots, and the imagination of a mechanical heart. </p>
+  How do living things react to music? It is a current within us - sound - literally! I wanted to make an art piece that reflected that ethereal, spiky, strong force that sound evokes in us. At the same time, I wanted to experiment with fashion and art-robots, and the imagination of a mechanical heart. Follow me as I try my best to recount how I designed, built, and coded this little flapping, beating heart of music! </p>
 
 <h3>DESIGN</h3>
-This is the full sketchpad of all the ideas that kickstarted this project!
+This is the full sketchpad of all the ideas that kickstarted this project. 
 As you can see, there were some ideas on the top right for the cosmetics of the music keyboard. However, I decided to focus more on the engineering of the heartwings for this semester's project!
 <img src="sketch.JPG" class="imgcenter" width="80%">
 From the getgo, I wanted skeletal but elegant wings. The top would move, while the bottom would be fixed. In the future, I would be interested to look into an accordian motion (all the wings collapsing in distance at a constant rate), but for now, they were fixed on an acrylic back plate! 
@@ -48,11 +48,12 @@ After these considerations, I jumped into fusion and sketched it out, this time 
 <div class="imgcenter"><img src="fusionwing.png" width="40%">
   <img src="fusionwings.png" width="40%">
 </div>
+I was really happy to find that, after a semester of practice with Fusion, I was able to sketch what I had envisioned into reality quite speedily. 
 <h3> FABRICATION</h3>
-I went ahead to laser cut the wings:<br>
+I went ahead to laser cut the wings on 1/8th inch wood. For the accent, I purposefully (promise!) scored the wings by inputting the thickness of the wood incorrectly, and then shifted the board up by a few millimeters for the real cut.<br>
 <img src="cut1.JPG" width="40%">
   <img src="cut2.JPG" width="40%"> <br>
-According to the proportions, I made a back plate, and measured it for Fusion:
+According to the proportions, I traced out a back plate. I decided to make it out of red acrylic, so it would be see-through but also provide a "webbing" that contrasted with the boning of the wings. I measured the design for Fusion:
 <br>
 <img src="back1.JPG" width="30%">
   <img src="back2.JPG" width="30%"> 
@@ -61,16 +62,17 @@ According to the proportions, I made a back plate, and measured it for Fusion:
   <br>
 <img src="IMG_7226.JPG" width="40%">
   <img src="IMG_7229.JPG" width="40%"> <br>
-  Now, a sneak peak of what's to come - the servo! I attached the servo on the wing (after some more painful drilling - 1 hour of delicate screwing!) and tested it with a single sweep code. 
+  Now, a sneak peak of what's to come - the servo! I attached the servo on the wing (after some more painful drilling - up to an hour of delicate screwing!) and tested it with a single sweep code. The universe, for this moment, was with me - it worked!
   <br><img src="imagne.png" class="imgcenter" width="40%">
   <br>
   <h3> SERVO CODE</h3>
-  However, the two should sweep together, not separately! For this, I created two Servos, one left and one right, all corresponding to one changing variable of "servopos". While the left servo would respond to "servopos", the right servo would respond to "90-servopos". The wings were capable of sweeping only 90 degrees before colliding/before visual unpleasantness!
+  However, the two should sweep together, not separately or staggered! (i.e. The left would sweep, then the right.) For this, I created two Servos objects, one left and one right, all corresponding to one changing variable of "servopos". While the left servo would respond to "servopos", the right servo would respond to "90-servopos". The wings were capable of sweeping only 90 degrees before colliding/before visual unpleasantness!
   Here is a video of them doing their first sweep:
   <video width="30%" height="auto" class="imgcenter" autoplay muted>
     <source src="IMG_7238.MOV" type="video/mp4">
   </video>
-  I added a music keyboard component to control the heights of the wings. I explain the code further in "Music Code" below, but here is the entire code file for the project:
+  Here is where the coding process gets a little disjoint in the timeline. This is where I started considering sensors, keyboards (a full keyboard implmentation, on top of the wings I made!), and sound output. I settled on making a keyboard for demo, but also insisted on the noise NOT being emitted by the in-house speaker (attached to the circuit, an awful digital noise), but instead the computer speakers. 
+  I added a music keyboard component to control the heights of the wings - the higher the note, the higher the wings! An oscillation of notes - a fluttering of wigns! I explain the code further in "Music Code" below, but here is the entire code file for the project:
   Here is the full code file, including the 
   <iframe src=https://app.arduino.cc/sketches/k-ra/cfa58c76-6d72-457f-b74b-284a826e07e1?view-mode=preview?embed style="height:510px;width:100%;margin:10px 0" frameborder=0></iframe>
 
