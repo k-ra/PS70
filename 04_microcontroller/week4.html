@@ -29,21 +29,50 @@
   <!-- documentation -->
 
   <div class="textcontainer">
-    <h2>microcontroller DRAGON! [zone under construction]</h2>
-    <h4>week 4</h4>
-    <p><b> ¡ideation! part 1: inspiration </b> </p>
-    <p><b> ¡ideation! part 2: drawing </b> </p>
-    <p><b> rendering</b> </p>
-    <p><b> printing </b>This took me HOURS.</p>
+    <h2>microcontroller MOBILE!</h2>
+    <p><b> ideation part 1: inspiration and drawing </b> </p>
+This project, like last week's, was also string based! However, I added a servo motor, circuitry, and code.  I wanted to make a children's mobile with charms that moved up and down. 
+I started off by designing the charms:
+<img src=charms.jpeg class="imgcenter" width="60%"> <br>
+And here was the drawing that I made to convert to DXF vector files: 
+<img src=dxfcharms.png class="imgcenter" width="50%"> <br>
+As for the mobile, I did some research on existing structures. I realized that they have fixed lengths because the strings are tied around the round enclosure. However, I wanted them to move! Hence, I decided to make the plate connect to the center, which would tie and connect all the strings, and then be controlled by a servo (microcontroller)! It would translate rotational motion (90 degrees of it) onto linear motion (height of the mobile).  
+<br>
+<img src=mobile.png  width="30%"> 
+<img src=newmobile.jpeg  width="40%"> <br> 
+<p><b> fabrication part 2: laser cutting and fishing wire </b> </p>
+I went ahead and laser cut it on acrylic here:
+<img src=acrylic.JPG class="imgcenter" width="60%">
+I assembled it with fishing wire for the invisible look. I tried to put two charms on every other string!
+<video width="320" height="500" class="imgcenter" autoplay muted>
+  <source src="IMG_7276.MOV" type="video/mp4">
+Your browser does not support the video tag.
+</video>
 
-    <p><b> assembly </b> </p>
-
-    <p> </p>
-    <em>references</em>
-
+Here it is without any microcontrollers yet. This is the linear motion I wanted to achieve for all of the charms on the baby mobile, at once!
+<video width="320" height="500" class="imgcenter" autoplay muted>
+  <source src="IMG_7284.MOV" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+<p><b> microcontroller part 3: coding and circuitry </b> </p>
+t was a challenge to find a servo at the end of the semester, which is why I was ecstatic about the idea to repurpose my final project. It's also a kinetic sculpture; all together it's a big kinetic sculpture! 
+Thus, I repurposed the servos of my final project, but wrote new code and shifted the circuitry away from music, and towards motion. This way, there was a rube-goldberg-esque large machine, with one part moving the other. I didn't expect it to be so visually cohesive!
+I coded for both of the wings to flap in sync, counterclockwise to eachother. I tied all the strings to the top flapping wing, and set it into motion! (Code is embedded below!)
+Here it is all together:
+<video width="320" height="auto" class="imgcenter" autoplay muted>
+  <source src="IMG_7291.MOV" type="video/mp4">
+</video>
+I'm really proud of the end result!
+<br>
+This was my servo flapping code:
+<iframe src="https://app.arduino.cc/sketches/fbbfb09c-93d6-4295-8ac4-14e7eaea654a?view-mode=embed" style="height:510px;width:100%;margin:10px 0" frameborder=0 />
+<br>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<em>references</em>
+    <a href="https://www.amazon.com/Mobile-Neutral-Nursery-Decor-Handmade/dp/B0BMLK2BPM?source=ps-sl-shoppingads-lpcontext&ref_=fplfs&psc=1&smid=A3IA2KF3VUYGB3">
+      Nursery Mobile Image
+    </a>
+    
   </div>
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-
 </html>
